@@ -1,0 +1,1 @@
+{"mappings":"AACAA,QAAQC,IADM,IAIdD,QAAQC,IADKC","sources":["src/index.js"],"sourcesContent":["const value = 10;\nconsole.log(value);\n\nconst test = value + 10;\nconsole.log(test);"],"names":["console","log","$1f0dc3b9307be026$var$value"],"version":3,"file":"index.dcc2f779.js.map"}
