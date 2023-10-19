@@ -7,19 +7,30 @@ const refs = {
   textarea: document.querySelector('.feedback-form textarea'),
   input: document.querySelector('input'),
 };
-const formData = {
+let formData = {
   email: '',
   message: '',
 };
 populateTextarea();
-refs.form.addEventListener('input', throttle(onTextareaInput, 500));
+
+refs.form.addEventListener('input', throttle(onFormInput, 500));
+
 refs.form.addEventListener('submit', e => {
   e.preventDefault();
-  localStorage.removeItem(STORAGE_KEY);
-  e.currentTarget.reset();
-  console.log(formData);
+
+  if (formData.email && formData.message) {
+      console.log('Form submitted:', formData);
+
+    localStorage.removeItem(STORAGE_KEY);
+    e.currentTarget.reset();
+    formData = {};
+
+  } else {
+    alert('Please fill in both fields (email and message) before submitting the form.');
+  }
 });
-function onTextareaInput(e) {
+
+function onFormInput(e) {
   formData[e.target.name] = e.target.value;
   const stringifiedData = JSON.stringify(formData);
   localStorage.setItem(STORAGE_KEY, stringifiedData);
